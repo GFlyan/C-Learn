@@ -12,5 +12,13 @@
 		<Project filename="Ex009/Ex009.cbp" />
 		<Project filename="Ex010/Ex010.cbp" />
 		<Project filename="Ex011/Ex011.cbp" />
+		<Project filename="Ex099/Ex099.cbp" />
+		<Project filename="Ex100/Ex100.cbp" />
+		<Project filename="Ex101/Ex101.cbp" />
+		<Project filename="Ex102/Ex102.cbp" />
+		<Project filename="Ex128/Ex128.cbp" />
+		<Project filename="Ex145/Ex145.cbp" />
+		<Project filename="Ex148/Ex148.cbp" />
+		<Project filename="Ex153/Ex153.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
