@@ -20,5 +20,8 @@
 		<Project filename="Ex145/Ex145.cbp" />
 		<Project filename="Ex148/Ex148.cbp" />
 		<Project filename="Ex153/Ex153.cbp" />
+		<Project filename="../../TEST C/Ex167/Ex167.cbp" />
+		<Project filename="../../TEST C/Ex169/Ex169.cbp" />
+		<Project filename="../../TEST C/Ex170/Ex170.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
