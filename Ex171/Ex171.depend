@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1731855501 source:/home/flyan/Documents/TEST C/Ex171/main.c
+	<stdio.h>
+	<stdlib.h>
+

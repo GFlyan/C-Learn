@@ -20,13 +20,13 @@
 		<Project filename="Ex145/Ex145.cbp" />
 		<Project filename="Ex148/Ex148.cbp" />
 		<Project filename="Ex153/Ex153.cbp" />
-		<Project filename="../../TEST C/Ex167/Ex167.cbp" />
-		<Project filename="../../TEST C/Ex169/Ex169.cbp" />
-		<Project filename="../../TEST C/Ex170/Ex170.cbp" />
-		<Project filename="../../TEST C/Ex171/Ex171.cbp" />
-		<Project filename="../../TEST C/Ex172/Ex172.cbp" />
-		<Project filename="../../TEST C/Ex173/Ex173.cbp" />
-		<Project filename="../../TEST C/Ex174/Ex174.cbp" />
-		<Project filename="../../TEST C/Ex175/Ex175.cbp" />
+		<Project filename="Ex167/Ex167.cbp" />
+		<Project filename="Ex168/Ex168.cbp" />
+		<Project filename="Ex170/Ex170.cbp" />
+		<Project filename="Ex171/Ex171.cbp" />
+		<Project filename="Ex172/Ex172.cbp" />
+		<Project filename="Ex173/Ex173.cbp" />
+		<Project filename="Ex174/Ex174.cbp" />
+		<Project filename="Ex175/Ex175.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
