@@ -16,7 +16,12 @@ int main()
                                      uma cadeia de caractéres(string), diferentemente
                                      de caractéres que devem ser fornecidos entre
                                      áspas simples(''), uma string deve ser fornecida
-                                     entre áspas duplas*/
+                                     entre áspas duplas("")*/
+
+                                   /*O tamanho do array não foi definido pois uma quantidade
+                                     específica de posições já é atribuida automaticamente
+                                     devido a quantidade de caractéres que formam a
+                                     string.*/
 
 
     printf("%s", word);//A máscara referente as strings é %s
