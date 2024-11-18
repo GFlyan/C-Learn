@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1731880604 source:/home/flyan/Documents/GitHub/C-Learn/Ex175/main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+
