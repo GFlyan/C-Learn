@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1731968499 source:/home/flyan/Documents/GitHub/C-Learn/TEST003/main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+

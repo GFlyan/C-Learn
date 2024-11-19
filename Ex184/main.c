@@ -10,6 +10,11 @@ Exercício 184: Ponteiros
 
 tipoPrimitivo *nomePonteiro = &variávelMesmoTipo;
 
+->Um ponteiro possui 3 atributos
+
+1°Um endereço de memória próprio (&)
+2°Um conteúdo que será o endereço de memória da variável apontada
+3°Um conteúdo apontado que será o conteúdo da variavel apontada (*)
 */
 
 

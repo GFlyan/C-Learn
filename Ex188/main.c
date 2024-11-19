@@ -6,6 +6,9 @@ Exercício 188: Um vetor é sempre um ponteiro?
 
 -> Devido a característica de um array ser um ponteiro, qualquer mudança nele mesmo sempre será salva
 independente do escopo e independente se for alterado por um procedimento(sem return)
+
+->O endereço de memória de um vetor diz respeito ao endereço da primeira posição deste vetor, sendo
+que o próprio nome do vetor já é um ponteiro
 */
 
 void doubleArrayInteger(int arrayInteger[], int arraySize)/*Criando um procedimento que dobra o valor
