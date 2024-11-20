@@ -26,8 +26,8 @@ int main()
 
              Aponta 2 conteúdos:
 
-             1̣º Valor contido na ponteiro B (*)
-             2̣º Valor contido na variável A (**) */
+             1̣º Conteúdo do ponteiro B (endereço de A) (*)
+             2̣º Conteúdo apontado pelo ponteiro B (valor de A) (**) */
 
     D = &C;/*Conteúdo:
 
@@ -35,9 +35,9 @@ int main()
 
              Aponta 3 conteúdos:
 
-             1̣º Valor contido na ponteiro C (*)
-             ̣2º Valor contido na ponteiro B (**)
-             ̣3º Valor contido na variável A (***) */
+             1̣º Conteúdo do ponteiro C (endereço de B) (*)
+             ̣2º Conteúdo do ponteiro B (endereço de A) (**)
+             ̣3º Conteúdo apontado pelo ponteiro B (valor de A) (***) */
 
 
 

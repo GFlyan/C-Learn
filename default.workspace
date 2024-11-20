@@ -46,5 +46,11 @@
 		<Project filename="Ex199/Ex199.cbp" />
 		<Project filename="Ex200/Ex200.cbp" />
 		<Project filename="Ex201/Ex201.cbp" />
+		<Project filename="Ex223/Ex223.cbp" />
+		<Project filename="Ex224/Ex224.cbp" />
+		<Project filename="Ex225/Ex225.cbp" />
+		<Project filename="Ex226/Ex226.cbp" />
+		<Project filename="Ex242/Ex242.cbp" />
+		<Project filename="Ex243/Ex243.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

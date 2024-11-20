@@ -31,8 +31,10 @@ int main()
 
                Endereço de memória do primeiro ponteiro;
 
-               1°Conteúdo do primeiro ponteiro(endereço da variável) *
-               2°Conteúdo apontado pelo primeiro ponteiro(conteúdo da variável) **
+               Conteúdos apontados:
+
+               1° Conteúdo do primeiro ponteiro(endereço da variável) *
+               2° Conteúdo apontado pelo primeiro ponteiro(conteúdo da variável) **
                */
 
     printf("--------------------------------------------------\n");
