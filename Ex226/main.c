@@ -123,8 +123,8 @@ int main()
     int userValue;//Criando uma variável que diz respeito à opção escolhida pelo usuário
 
     do{//Garantindo que o loop vai rodar sem o usuário ter atribuido um valor ainda
-    printf("\n0 - Sair\n1 - Empilhar\n2 - Desempilhar\n3 - Imprimrir\nInsira: ");
-    scanf("%d", &userValue);//Atribuindo um valor escolhido pelo usuário
+        printf("\n0 - Sair\n1 - Empilhar\n2 - Desempilhar\n3 - Imprimrir\nInsira: ");
+        scanf("%d", &userValue);//Atribuindo um valor escolhido pelo usuário
 
     switch(userValue)//Realizar baseando-se na opção do usuário
     {
