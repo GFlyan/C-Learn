@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 /*
-Exercício 197: Função malloc()
+Exercício 197: Alocação dinâmica de memória com a função malloc()
 
 ->malloc = memory alloc = alocação de memória
 
@@ -27,8 +27,8 @@ int main()
     int *any;//Criando um ponteiro (que recebe um endereço de memória)
 
     any = malloc(sizeof(int));/*Atribuindo ao conteúdo do ponteiro um endereço de memória fornecido
-                                pelo retorno de malloc que recebe como parâmetro um tamanho em bits,
-                                reservando um endereço de memória baseado na quantidade de bits
+                                pelo retorno de malloc que recebe como parâmetro um tamanho em bytes,
+                                reservando um endereço de memória baseado na quantidade de bytes
                                 fornecidos*/
 
     if(any)//Caso a alocação de memória tenha dado certo
@@ -38,7 +38,7 @@ int main()
         scanf("%d", any);/*Atribuindo um valor para o conteúdo apontado pelo
                            ponteiro, cujo tem como conteúdo um endereço de
                            memória fornecido por malloc*/
-        printf("O conteúdo do ponteiro é: %p\nO conteúdo apontado é: %d\n", any, *any);
+        printf("O conteúdo do ponteiro é: %p\nO conteúdo apontado pelo ponteiro é: %d\n", any, *any);
     }
     else
         printf("Alocação de memória falhou.\n");
