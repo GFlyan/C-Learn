@@ -123,42 +123,57 @@ int main()
     int userValue;//Criando uma variável que diz respeito à opção escolhida pelo usuário
 
     do{//Garantindo que o loop vai rodar sem o usuário ter atribuido um valor ainda
+
         printf("\n0 - Sair\n1 - Empilhar\n2 - Desempilhar\n3 - Imprimrir\nInsira: ");
         scanf("%d", &userValue);//Atribuindo um valor escolhido pelo usuário
 
-    switch(userValue)//Realizar baseando-se na opção do usuário
-    {
-    case 1://Empilhando
-        top = push(top);/*Acionando a função push que recebe como parâmetro o endereço
-                          atribuido ao ponteiro nó do topo, onde será retornado para o
-                          nó do topo um novo nó contendo um novo elemento e o endereço
-                          de memória referente ao nó antigo*/
-        break;
-    case 2://Desempilhando
-        removed = pop(&top);/*Acionando a função pop que remove o atual nó topo da pilha
-                             fazendo com que endereço de memória do campo próximo nó seja
-                             o novo nó topo da pilha, caso não haja nenhum elemento na pilha
-                             será retornado um endereço de memória NULL*/
-        if(removed != NULL)//Caso a pilha não esteja vazia
+        switch(userValue)//Realizar baseando-se na opção do usuário
         {
-            printf("\nO elemento removido foi: %d\n", removed->value);
+            case 1://Empilhando
+
+                top = push(top);/*Acionando a função push que recebe como parâmetro o endereço
+                                atribuido ao ponteiro nó do topo, onde será retornado para o
+                                nó do topo um novo nó contendo um novo elemento e o endereço
+                                de memória referente ao nó antigo*/
+
+                break;
+
+            case 2://Desempilhando
+
+                removed = pop(&top);/*Acionando a função pop que remove o atual nó topo da pilha
+                                 fazendo com que endereço de memória do campo próximo nó seja
+                                 o novo nó topo da pilha, caso não haja nenhum elemento na pilha
+                                 será retornado um endereço de memória NULL*/
+
+                if(removed != NULL)//Caso a pilha não esteja vazia
+                {
+                    printf("\nO elemento removido foi: %d\n", removed->value);
+                }
+                else//Caso a pilha esteja vazia
+                    printf("\nNão há nenhum nó a ser removido.\n");
+
+                break;
+
+            case 3://Imprimindo o valor do topo da pilha
+
+                if(top != NULL)//Caso a pilha não esteja vazia
+                    printf("\nValor do topo da pilha: %d\n", top->value);
+
+                else//Caso a pilha esteja vazia
+                    printf("\nNão há nenhum nó a ser informado.\n");
+
+                break;
+
+            default://Opções inválidas ou sair da pilha
+
+                if(userValue!=0)//Caso o valor seja inválido
+                    printf("\nValor inválido.\n");
+
+                else//Caso o usuário queira finalizar a pilha
+                    printf("\nPilha finalizada!\n");
+
+                break;
         }
-        else//Caso a pilha esteja vazia
-            printf("\nNão há nenhum nó a ser removido.\n");
-        break;
-    case 3://Imprimindo o valor do topo da pilha
-        if(top != NULL)//Caso a pilha não esteja vazia
-            printf("\nValor do topo da pilha: %d\n", top->value);
-        else//Caso a pilha esteja vazia
-            printf("\nNão há nenhum nó a ser informado.\n");
-        break;
-    default://Opções inválidas ou sair da pilha
-        if(userValue!=0)//Caso o valor seja inválido
-            printf("\nValor inválido.\n");
-        else//Caso o usuário queira finalizar a pilha
-            printf("\nPilha finalizada!\n");
-        break;
-    }
 
     }
     while(userValue!=0);//Condição de parada do loop
