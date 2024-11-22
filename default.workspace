@@ -51,8 +51,9 @@
 		<Project filename="Ex225/Ex225.cbp" />
 		<Project filename="Ex226/Ex226.cbp" />
 		<Project filename="Ex234/Ex234.cbp" />
+		<Project filename="Ex236/Ex236.cbp" />
+		<Project filename="Ex237/Ex237.cbp" />
 		<Project filename="Ex242/Ex242.cbp" />
 		<Project filename="Ex243/Ex243.cbp" />
-		<Project filename="Ex236/Ex236.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

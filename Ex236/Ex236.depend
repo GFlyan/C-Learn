@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1732292577 source:/home/flyan/Documents/GitHub/C-Learn/Ex236/main.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+

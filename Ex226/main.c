@@ -111,20 +111,39 @@ o segundo conteúdo apontado de um ponteiro pra ponteiro);
       endereço de memória NULL*/
 }
 
+void printStack(Node *top)
+/*
+Recebe como parâmetro o endereço do nó para mostra o campo do valor
+
+Informa todos os valores contidos na pilha
+*/
+{
+    if(top)//Caso o endereço do nó seja vazio significa que chegou no final da pilha
+    {
+        printf("%d\n", top->value);
+        printStack(top->nextNode);//Chamada recursiva da função que mostra cada elemento da pilha
+    }
+
+}
+
+
 int main()
 {
     Node *top = NULL;/*Criando um ponteiro struct que diz respeito ao nó
                do topo, por se tratar de uma pilha e atribuindo NULL como
                conteúdo desse ponteiro pois a pilha está vazia*/
 
-    Node *remove;/*Criando um ponteiro struct que diz respeito ao nó
+    Node *removed;/*Criando um ponteiro struct que diz respeito ao nó
                    que será removido caso ele exista*/
 
     int userValue;//Criando uma variável que diz respeito à opção escolhida pelo usuário
 
     do{//Garantindo que o loop vai rodar sem o usuário ter atribuido um valor ainda
 
-        printf("\n0 - Sair\n1 - Empilhar\n2 - Desempilhar\n3 - Imprimrir\nInsira: ");
+        printf("\n------------------------------\n");
+        printf("\n0 - Sair\n1 - Empilhar\n2 - Desempilhar\n3 - Imprimrir\n");
+        printf("\n------------------------------\n");
+        printf("Insira: ");
         scanf("%d", &userValue);//Atribuindo um valor escolhido pelo usuário
 
         switch(userValue)//Realizar baseando-se na opção do usuário
@@ -147,30 +166,54 @@ int main()
 
                 if(removed != NULL)//Caso a pilha não esteja vazia
                 {
+                    printf("\n------------------------------\n");
                     printf("\nO elemento removido foi: %d\n", removed->value);
+                    printf("\n------------------------------\n");
                 }
+
                 else//Caso a pilha esteja vazia
+                {
+                    printf("\n------------------------------\n");
                     printf("\nNão há nenhum nó a ser removido.\n");
+                    printf("\n------------------------------\n");
+                }
 
                 break;
 
             case 3://Imprimindo o valor do topo da pilha
 
-                if(top != NULL)//Caso a pilha não esteja vazia
-                    printf("\nValor do topo da pilha: %d\n", top->value);
+                if(top)//Caso a pilha não esteja vazia
+                {
+                    printf("\nValores na pilha: %d\n");
+                    printf("\n------------------------------\n");
+                    printStack(top);//Acionando o procedimento que mostra os elementos da pilha
+                    printf("------------------------------\n");
+                }
 
                 else//Caso a pilha esteja vazia
-                    printf("\nNão há nenhum nó a ser informado.\n");
+                {
+                    printf("\n------------------------------\n");
+                    printf("A pilha está vazia\n");
+                    printf("------------------------------\n");
+                }
 
                 break;
 
             default://Opções inválidas ou sair da pilha
 
                 if(userValue!=0)//Caso o valor seja inválido
+                {
+                    printf("\n------------------------------\n");
                     printf("\nValor inválido.\n");
+                    printf("\n------------------------------\n");
+                }
 
                 else//Caso o usuário queira finalizar a pilha
+                {
+                    printf("\n------------------------------\n");
                     printf("\nPilha finalizada!\n");
+                    printf("\n------------------------------\n");
+                }
 
                 break;
         }

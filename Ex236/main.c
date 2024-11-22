@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 /*
 Exercício 236: Inserção na fila
@@ -7,9 +8,21 @@ Exercício 236: Inserção na fila
 FIFO - First In First Out
 */
 
+int generateValue()
+/*
+Função que gera um valor inteiro aleatório e retorna esse valor
+*/
+{
+    sleep(1);//Computador aguarda 1 segundo para atualizar o tempo passado como semente da função rand
+    srand(time(NULL));//Passando o tempo como semente da função rand
+    int value = rand();//Gerando um valor aleatório com a função rand e armazenando ele
+    return value;
+}
+
+
 typedef struct node
 /*
-Criando uma estrtura que diz respeito à um nó que
+Criando uma estrutura que diz respeito à um nó que
 possui campos que diz respeito ao valor contido nesse
 nó e o endereço de memória do próximo nó
 */
@@ -18,7 +31,7 @@ nó e o endereço de memória do próximo nó
     struct node *nextNode;//Próximo nó
 }Node;
 
-void inserir(Node **insere, int value);
+void insertNode(Node **line)
 /*
 
 Recebe como parâmetro um ponteiro pra ponteiro
@@ -44,22 +57,22 @@ recebe o endereço do novo nó.
 
     if(newNode)
     {
-        newNode->value = NULL;
+        newNode->value = generateValue();//Atribuindo um valor para o novo nó
         newNode->nextNode=NULL;/*Recebe null pois se trata do último elemento,
                                 sendo que o próximo nó não existe na fila*/
 
-        if(*insere==NULL)
+        if(*line==NULL)
         //É realizado somente para o primeiro nó
 
-            *insere = newNode;
+            *line = newNode;//Insere o nó do início da fila
 
         else
         {
             Node *aux;//Ponteiro auxiliar que percorre os nós da fila
 
-            aux = *insere;//Ponteiro auxiliar recebe o endereço de memória do primeiro nó da fila
+            aux = *line;//Ponteiro auxiliar recebe o endereço de memória do primeiro nó da fila
 
-            while(aux->nextNode != NULL)/*Indo até o último nó da fila
+            while(aux->nextNode)/*Indo até o último nó da fila
 
                                           Condição de parada é:
 
@@ -74,14 +87,17 @@ recebe o endereço do novo nó.
         }
     }
     else
-        printf("Alocação de memória para o nó falhou.");
+        printf("Alocação de memória para o nó falhou.\n");
 
 }
 
 int main()
 {
-    int *insere = NULL;
-
-    printf("Hello world!\n");
+    Node *line = NULL;//Criando uma fila vazia
+    insertNode(&line);//Inserindo o primeiro nó da fila
+    printf("O primeiro elemento da fila é: %d\n", line->value);
+    insertNode(&line);//Inserindo o segundo nó da fila
+    Node *secondNode = line->nextNode;//Segundo nó da fila
+    printf("O segundo elemento da fila é: %d\n", secondNode->value);
     return 0;
 }
