@@ -15,8 +15,8 @@ e de uma fila inserção no fim, remoção no início.
 
 Inserir: início/meio/fim
 Remover: início/meio/fim
-Busca
-Inserção ordenada
+Fazer buscas
+Fazer inserções ordenadas
 
 Lista Simpletesmente Encadeada
 
@@ -33,9 +33,12 @@ Lista Circular
 ->O último elemento aponta para o primeiro elemento da lista
 ->Quando o ultimo nó apontar para o início da lista, será o final da lista circular
 
+ADENDOS:
+
 ->Ordem de execução dos nós de uma lista: aloca->preenche->insere
 ->Não pode perder a referência para o início da lista
 ->Criar um ponteiro auxiliar para o primeiro nó
+->Percursão da lista com um ponteiro auxiliar
 ->Inserção de nós em qualquer posição, sem restrição
 ->Remoção em lista é mais complicada por não possuir uma restrição
 sendo necessário realizar busca
@@ -43,6 +46,5 @@ sendo necessário realizar busca
 
 int main()
 {
-
     return 0;
 }

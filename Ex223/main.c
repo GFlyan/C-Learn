@@ -27,7 +27,7 @@ LIFO - Last In First Out - Último a entrar é o primeiro a sair
 
 Sobre o topo:
 
-Ponteiro apontando para o topo da pilha
+Ponteiro apontando para o nó topo da pilha
 No inicio quando a pilha está vazia o valor do ponteiro é null
 
 Estrutura de um nó:

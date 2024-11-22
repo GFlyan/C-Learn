@@ -4,12 +4,12 @@
 /*
 Exercício 243: Inserindo no início de uma lista encadeada
 */
-typedef struct{//Criando um nó pra cada elemento da lista encadeada
+typedef struct node{//Criando um nó pra cada elemento da lista encadeada
     int value;
-    struct No *proximo;//Cada nó precisa de um ponteiro pro nó seguinte
-}No;
+    struct node *nextNode;//Cada nó precisa de um ponteiro pro nó seguinte
+}Node;
 
-void insertBegin(No **lista )
+void insertBegin(Node **lista )
 
 int main()
 {
