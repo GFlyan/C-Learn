@@ -5,7 +5,7 @@
 /*
 Exercicio 238: Fila funcional
 
-FIFO - First In First Out
+FIFO - First In First Out - primeiro elemento a ser adicionado é o primeiro a ser removido
 */
 
 int generateInteger()
@@ -118,7 +118,6 @@ int main()
         printf("---------------------------\n");
         printf("INSIRA: ");
         scanf("%d", &userValue);//Usuário informa um valor.
-        getchar();
         switch(userValue)//Realizar conforme informado pelo usuário.
         {
             case 1:
