@@ -2,9 +2,8 @@
 #include <stdlib.h>
 
 /*
-Exercício 243: Inserindo no início em uma lista encadeada
+Exercício 244: Inserindo no final em uma lista encadeada
 */
-
 
 int insertIntegerValue()
 /*
@@ -32,22 +31,35 @@ para o endereço do próximo nó.
     struct node *nextNode;//Campo que diz respeito ao endereço de memória do próximo nó.
 }Node;
 
-void insertBegin(Node **linkedList)
+void insertEnd(Node **linkedList)
 /*
-Procedimento que sempre irá inserir no início
-de uma lista encadeada.
+Procedimento que insere elementos no final
+de uma lista encadeada, caso a opção
+seja executada e não exista nenhum elemento
+na lista ainda, será adicionado 1 elemento
+no inicio.
 
 Recebe como parâmetro o endereço de memória
-do ponteiro que armazena o início da lista.
+do ponteiro que armazena o endereço do
+primeiro nó da lista encadeada.
 */
 {
-    Node *newNode = malloc(sizeof(Node));//Criando um novo nó e alocando memória.
-    if(newNode)//Caso a alocação de memória de certo.
+    Node *newNode = malloc(sizeof(Node));//Criando um ponteiro que diz respeito ao novo nó e alocando memória
+    if(newNode)//Caso a alocação de memória de certo
     {
-        newNode->value = insertIntegerValue();//Campo valor executa o procedimento de inserir valor.
-        newNode->nextNode = *linkedList;//Campo do próximo nó do novo nó recebe o nó antigo do início da lista.
-        *linkedList = newNode;//Inicio da lista recebe o novo nó.
+        newNode->value = insertIntegerValue();//Atribuindo um valor pro campo valor do nó
+        newNode->nextNode = NULL;//Por se tratar de uma inserção como último nó, o próximo nó do novo nó não irá existir
+        if(*linkedList)//Caso já tenha elementos na lista
+        {
+            Node *aux = *linkedList;//Criando um ponteiro auxiliar que recebe o primeiro nó
+            while(aux->nextNode)//Percorrendo até chegar no último nó
+                aux = aux->nextNode;//Atribuindo os próximos nós de cada nó até chegar no último nó
+            aux->nextNode = newNode;//O campo próximo nó do último nó recebe o novo nó
+        }
+        else//Caso a lista esteja vazia
+            *linkedList = newNode;//O primeiro nó da lista recebe o novo nó
     }
+
 }
 
 void printLinkedList(Node *linkedList)
@@ -68,15 +80,16 @@ elemento da lista.
     }
 }
 
+
 int main()
 {
-    Node *linkedList = NULL;//Criando o ponteiro que diz respeito a uma lista encadeada
+    Node *linkedList = NULL;//Criando um ponteiro que diz respeito a uma lista encadeada
     int userValue;//Criando uma variável que irá receber um valor fornecido pelo usuário
 
     do//Enquanto o usuário não desejar sair da lista encadeada
     {
         printf("--------------------------------\n");
-        printf("1 - Inserir no início\n2 - Imprimir\n0 - Sair\n");
+        printf("1 - Inserir no final\n2 - Imprimir\n0 - Sair\n");
         printf("--------------------------------\n");
         printf("INSIRA: ");
         scanf("%d", &userValue);//Usuário fornece um valor
@@ -84,7 +97,7 @@ int main()
         {
             case 1:
                 printf("--------------------------------\n");
-                insertBegin(&linkedList);//Acionando o procedimento que adiciona um nó novo no início da lista encadeada
+                insertEnd(&linkedList);//Acionando o procedimento que adiciona um nó novo no final da lista encadeada
                 printf("--------------------------------\n");
                 printf("Elemento adicionado.\n");
                 printf("--------------------------------\n");
@@ -117,7 +130,6 @@ int main()
                     printf("--------------------------------\n");
                 }
                 break;
-
         }
     }
     while(userValue != 0);
