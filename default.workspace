@@ -60,5 +60,6 @@
 		<Project filename="Ex245/Ex245.cbp" />
 		<Project filename="Ex246/Ex246.cbp" />
 		<Project filename="Ex330/Ex330.cbp" />
+		<Project filename="Ex331/Ex331.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
