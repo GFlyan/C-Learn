@@ -11,6 +11,8 @@ Exercício 331: Bubble Sort
 ->O comportamento do algoritmo se assemelha ao comportamento de uma bolha.
 
 ->Não é eficiente, pois quanto maior um vetor, maior será o tempo de execução do código.
+
+->Organiza do final do array para o início.
 */
 
 void bubbleSort(int *arrayInteger, int sizeArray)

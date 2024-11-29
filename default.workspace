@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
+		<Project filename="EDA/EDA.cbp" />
 		<Project filename="Ex001/Ex001.cbp" />
 		<Project filename="Ex002/Ex002.cbp" />
 		<Project filename="Ex003/Ex003.cbp" />
@@ -61,6 +62,6 @@
 		<Project filename="Ex246/Ex246.cbp" />
 		<Project filename="Ex330/Ex330.cbp" />
 		<Project filename="Ex331/Ex331.cbp" />
-		<Project filename="EDA/EDA.cbp" />
+		<Project filename="Ex332/Ex332.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
