@@ -32,7 +32,6 @@ e a posição final do vetor que será processado.
 */
 {
     int sizeArray = end+1;
-    int sinta= 0;
     while(begin<end) /*A condição de início do vetor < fim do vetor é importante
                        ao decorrer do quick sort, devido o decorrer das chamadas
                        recursivas, o array será subdivido em outros arrays
@@ -50,7 +49,7 @@ e a posição final do vetor que será processado.
         arrayInteger[begin] = arrayInteger[end];//Swap de conteúdos, posição mais ao início recebe um valor menor do que o antes contido
         arrayInteger[end] = aux;//Swap de conteúdo, a posição mais ao fim recebe um valor maior do que o antes contido
      }
-    //A este ponto begin é igual a end, início igual ao fim, significando que uma posição ja está organizada
+    //A este ponto begin é igual a end, início igual ao fim, significando que o posição ja está organizada
 
     return begin;//Retorna a posição já organizada que irá ser o ponto de divisão dos subvetores
 }
@@ -67,7 +66,7 @@ Recebe como parâmetro um array inteiro, á posição
 inicial do vetor e a posição final do vetor.
 */
 {
-    if(begin<end)//Enquanto não for o vetor unitário
+    if(begin>=end) return;//Caso seja o vetor unitário ordenado - PONTO DE PARADA
     {
         int position = partition(arrayInteger, begin, end);/*Criando uma variável que aciona a função
                                                              partition, qual organiza equilibradamente os

@@ -129,18 +129,18 @@ Recebe 2 parâmetros, um vetor e o tamanho desse vetor.
 
 int main()
 {
-    int arrayInteger[] = {9, 2, 8, 1, 0, 3, 6, 4};
-    int sizeArray = 8;
+    int arrayInteger[] = {9, 2, 8, 1, 0, 3, 6, 4};//Criando um vetor de inteiros
+    int sizeArray = 8;//Tamanho do vetor acima
     int aux[sizeArray];/*Cria um vetor auxiliar de tamanho do vetor principal
                          que irá receber a junção dos subvetores ordenados do
-                         merge sort*/
+                         merge sort, chamada no main para otimizar memória*/
     printf("------------------------------------------\n");
     printf("Array Desordenado:\n");
-    printArrayInteger(arrayInteger, sizeArray);
+    printArrayInteger(arrayInteger, sizeArray);//Acionando o procedimento que mostra o vetor
     printf("------------------------------------------\n");
     printf("Array Ordenado:\n");
-    mergeSort(arrayInteger, aux, 0, sizeArray-1);
-    printArrayInteger(arrayInteger, sizeArray);
+    mergeSort(arrayInteger, aux, 0, sizeArray-1);//Acionando o procedimento de ordenação do vetor
+    printArrayInteger(arrayInteger, sizeArray);//Acionando o procedimento que mostra o vetor
     printf("------------------------------------------\n");
     return 0;
 }
