@@ -14,7 +14,7 @@ ordenada através de um vetor auxiliar
 
 */
 
-void merge(int *arrayInteger, int begin, int mid, int end, int *aux)
+void merge(int *arrayInteger,  int *aux, int begin, int mid, int end)
 /*
 Procedimento que realiza a junção dos subvetores criados, de forma ordenada
 em um vetor auxiliar que será copiado pelo vetor originial.
@@ -86,7 +86,7 @@ do raio de posições, a posição do elemento do meio, e o endereço do vetor a
         arrayInteger[i] = aux[i];//Preenche o vetor principal de forma ordenada
 }
 
-void mergeSort(int *arrayInteger, int begin, int end)
+void mergeSort(int *arrayInteger, int *aux, int begin, int end)
 /*
 Procedimento de ordenação.
 
@@ -101,10 +101,10 @@ e a posição final do vetor.
 {
     int mid = (begin+end)/2;//Posição média de divisão do vetor
     if(begin>=end) return;//Realizando divisões até chegar no vetor unitário - PONTO DE PARADA
-        mergeSort(arrayInteger, begin, mid);//Divide o vetor a esquerda, criando um subvetor
-        mergeSort(arrayInteger, mid+1, end);//Divide o vetor a direita, criando um subvetor
-    int aux[end+1];//Cria um vetor auxiliar de tamanho do vetor principal que irá receber a junção dos subvetores ordenados
-    merge(arrayInteger, begin, mid, end, aux);//Aciona o procedimento que realiza a junção dos subvetores de forma ordenada
+        mergeSort(arrayInteger, aux, begin, mid);//Divide o vetor a esquerda, criando um subvetor
+        mergeSort(arrayInteger, aux, mid+1, end);//Divide o vetor a direita, criando um subvetor
+
+    merge(arrayInteger, aux, begin, mid, end);//Aciona o procedimento que realiza a junção dos subvetores de forma ordenada
 
 }
 
@@ -131,12 +131,15 @@ int main()
 {
     int arrayInteger[] = {9, 2, 8, 1, 0, 3, 6, 4};
     int sizeArray = 8;
+    int aux[sizeArray];/*Cria um vetor auxiliar de tamanho do vetor principal
+                         que irá receber a junção dos subvetores ordenados do
+                         merge sort*/
     printf("------------------------------------------\n");
     printf("Array Desordenado:\n");
     printArrayInteger(arrayInteger, sizeArray);
     printf("------------------------------------------\n");
     printf("Array Ordenado:\n");
-    mergeSort(arrayInteger, 0, sizeArray-1);
+    mergeSort(arrayInteger, aux, 0, sizeArray-1);
     printArrayInteger(arrayInteger, sizeArray);
     printf("------------------------------------------\n");
     return 0;
