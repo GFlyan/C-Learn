@@ -73,8 +73,8 @@ inicial do vetor e a posição final do vetor.
                                                              valores do vetor em relação à um pivô e retorna
                                                              a posição do elemento pivô*/
 
-        quickSort(arrayInteger, begin, position-1);//Chamada recursiva para cada subvetor a esquerda de um pivô
-        quickSort(arrayInteger, position, end);//Chamada recursiva para cada subvetor a direita de um pivô
+        quickSort(arrayInteger, begin, position-1);//Valores a esquerda, menores que o pivô
+        quickSort(arrayInteger, position+1, end);//Valores a direita, maiores que o pivô
     }
 }
 
