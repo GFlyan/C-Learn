@@ -31,6 +31,8 @@ Recebe como parâmetro um array, a posição inicial do vetor
 e a posição final do vetor que será processado.
 */
 {
+    int sizeArray = end+1;
+    int sinta= 0;
     while(begin<end) /*A condição de início do vetor < fim do vetor é importante
                        ao decorrer do quick sort, devido o decorrer das chamadas
                        recursivas, o array será subdivido em outros arrays
@@ -38,17 +40,18 @@ e a posição final do vetor que será processado.
                        executado*/
     {
         int pivot = ((arrayInteger[begin] + arrayInteger[end] + arrayInteger[(begin+end)/2])/3);//Definindo o elemento pivô
+
         while(begin<end && arrayInteger[begin] <= pivot)//Procura do início ao fim de um vetor um elemento maior que o pivô
-            begin++;
-        while(begin<end && arrayInteger[end] > pivot);//Procurando do fim até o início um elemento menor que o pivô
-            end--;
+            begin++;//Incremento unitário a variável que representa a posição que terá um valor maior que o pivô
+        while(begin<end && arrayInteger[end] > pivot)//Procurando do fim até o início um elemento menor que o pivô
+            end--;//Incremento unitário a variável que representa a posição que terá um valor menor que o pivõ
 
         int aux = arrayInteger[begin];//Criando uma variável auxiliar para realizar swap entre dois dados
         arrayInteger[begin] = arrayInteger[end];//Swap de conteúdos, posição mais ao início recebe um valor menor do que o antes contido
-        arrayInteger[end = aux;//Swap de conteúdo, a posição mais ao fim recebe um valor maior do que o antes contido
-
-    }
+        arrayInteger[end] = aux;//Swap de conteúdo, a posição mais ao fim recebe um valor maior do que o antes contido
+     }
     //A este ponto begin é igual a end, início igual ao fim, significando que uma posição ja está organizada
+
     return begin;//Retorna a posição já organizada que irá ser o ponto de divisão dos subvetores
 }
 
@@ -64,19 +67,46 @@ Recebe como parâmetro um array inteiro, á posição
 inicial do vetor e a posição final do vetor.
 */
 {
-    while(begin<end)//Enquanto não for o vetor unitário
+    if(begin<end)//Enquanto não for o vetor unitário
     {
         int position = partition(arrayInteger, begin, end);/*Criando uma variável que aciona a função
                                                              partition, qual organiza equilibradamente os
                                                              valores do vetor em relação à um pivô e retorna
                                                              a posição do elemento pivô*/
-        quickSort(arrayInteger, begin, position);//Chamada recursiva para cada subvetor a esquerda de um pivô
-        quickSort(arrayInteger, position+1, end);//Chamada recursiva para cada subvetor a direita de um pivô
+
+        quickSort(arrayInteger, begin, position-1);//Chamada recursiva para cada subvetor a esquerda de um pivô
+        quickSort(arrayInteger, position, end);//Chamada recursiva para cada subvetor a direita de um pivô
+    }
+}
+
+void printArrayInteger(int *arrayInteger, int sizeArray)
+/*
+Procedimento que mostra os valores de um vetor.
+
+Recebe como parâmetros um vetor e o tamanho do vetor.
+*/
+{
+    for(int i = 0 ; i < sizeArray ; i++)//Percorrendo cada posição do vetor
+    {
+        if(i == 0)//Caso seja o primeiro loop
+            printf("[");
+        if(i <sizeArray-1)//Caso não seja o último elemento do vetor
+            printf("%d, ", arrayInteger[i]);
+        else//Caso seja o último elemento do vetor
+            printf("%d]\n", arrayInteger[i]);
     }
 }
 
 int main()
 {
-    printf("Hello world!\n");
+    int arrayInteger[] = {0, 3, 8, 4, 5, 1, 6};//Criando um vetor de inteiros
+    int sizeArray = 7;//Variável que diz respeito ao tamanho do vetor acima
+    printf("------------------------------------------\n");
+    printf("Array Desorganizado: ");
+    printArrayInteger(arrayInteger, sizeArray);//Acionando o procedimento que mostra os elementos de um vetor
+    printf("------------------------------------------\n");
+    quickSort(arrayInteger, 0, sizeArray-1);//Acionando o procedimento que ordena o vetor
+    printf("Array Organizado: ");
+    printArrayInteger(arrayInteger, sizeArray);//Acionando o procedimento que mostra os elementos de um vetor
     return 0;
 }

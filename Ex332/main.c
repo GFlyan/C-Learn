@@ -69,7 +69,7 @@ um valor que diz respeito a posição que se quer iniciar
 a ordenação do vetor.
 */
 {
-    if(begin >= sizeArray-1) return;//Analisa se o início do vetor não se trata da posição final (já ordenada) - PONTO DE PARADA
+    if(begin >= sizeArray) return;//Analisa se o início do vetor não se trata da posição final (já ordenada) - PONTO DE PARADA
     int minor = begin;/*Variável que recebe o índice da posição que contém o menor valor,
                         onde inicialmente será o índice da posição principal, para que,
                         caso não haja nenhum valor menor que o da posição principal,

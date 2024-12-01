@@ -68,7 +68,7 @@ as posições analisadas.
 a posição final do vetor(sizeArray-1) estará organizada;
 */
 {
-    if (sizeArray<2) return;//Caso o vetor ja esteja organizado - PONTO DE PARADA
+    if (sizeArray<=1) return;//Caso o vetor ja esteja organizado - PONTO DE PARADA
 
     for(int i = 0; i < sizeArray-1; i++)/*Percorrendo de posição em posição analisando
                                           se a posição referente possui um valor maior
@@ -86,25 +86,13 @@ a posição final do vetor(sizeArray-1) estará organizada;
             arrayInteger[i+1] = aux;//Posição do menor valor recebe o maior valor
         }
     }
-    bubbleSortRecursivo(arrayInteger, sizeArray-1);/*Chamada recursiva passando arraySize-1 pois a cada
+    bubbleSortRecursivo(arrayInteger, --sizeArray);/*Chamada recursiva passando arraySize-1 pois a cada
                                                      execução do loop é organizado corretamente um valor
                                                      em sua devida posição no final do vetor, logo essa
                                                      posição do vetor não deve ser passada como parâmetro
                                                      para evitar processamento desnecessário*/
 }
 
-void generateArrayInteger(int *arrayInteger, int sizeArray)
-/*
-Procedimento que gera valores aleatórios
-para as posições de um vetor.
-*/
-{
-    srand(time(NULL));//Definindo o tempo como semente da função rand
-    for(int i = 0 ; i < sizeArray ; i++)//Percorrendo cada posição do vetor
-    {
-        arrayInteger[i] = rand() % 100000x  ;//Atribuindo um valor aleatório para a posição referente
-    }
-}
 
 void printArrayInteger(int *arrayInteger, int sizeArray)
 /*
@@ -124,21 +112,27 @@ Recebe como parâmetros um vetor e o tamanho do vetor.
     }
 }
 
+
 int main()
 {
-    int userValue;//Definindo uma variável que diz respeito ao tamanho do vetor que será informado pelo usuário
-    printf("Tamanho do vetor: ");
-    scanf("%d", &userValue);//Atribuindo o tamanho do vetor informado pelo usuário
-    int arrayInteger[userValue];//Criando um vetor com o tamanho informado pelo usuário
+    int arrayInteger[] = {9, 3, 6, 4, 0, 2};//Criando um vetor de inteiros
+    int sizeArray = 6;//Tamanho do vetor acima
+    int arrayIntegerRercursive[] = {3, 6, 1, 0, 4, 8, 6, 3};//Criando um vetor de inteiros
+    int sizeArrayRercursive = 8;//Tamanho do vetor acima
     printf("------------------------------\n");
-    generateArrayInteger(arrayInteger, userValue);//Atribuindo valores alaeatorios para o vetor criado pelo usuário
-    printf("Vetor desorganizado:\n");
-    printArrayInteger(arrayInteger, userValue);//Mostrando os valores contidos no vetor
+    printf("VERSÃO ITERATIVA -> Vetor Desordenado:\n");
+    printArrayInteger(arrayInteger, sizeArray);//Mostrando o vetor desordenado
     printf("------------------------------\n");
-    bubbleSort(arrayInteger, userValue);//Acionando o procedimento de organização para o vetor
-    printf("Vetor organizado:\n");
-    printArrayInteger(arrayInteger, userValue);//Mostrando o vetor organizado
+    bubbleSort(arrayInteger, sizeArray);//Acionando o procedimento iterativo de ordenação do vetor
+    printf("VERSÃO ITERATIVA -> Vetor Ordenado:\n");
+    printArrayInteger(arrayInteger, sizeArray);//Mostrando o vetor ordenado
     printf("------------------------------\n");
+    printf("VERSÃO RECURSIVA -> Vetor Desordenado:\n");
+    printArrayInteger(arrayIntegerRercursive, sizeArrayRercursive);//Mostrando o vetor desordenado
+    printf("------------------------------\n");
+    printf("VERSÃO RECURSIVA-> Vetor Ordenado:\n");
+    bubbleSortRecursivo(arrayIntegerRercursive, sizeArrayRercursive);//Acionando o procedimento recursivo que ordena o vetor
+    printArrayInteger(arrayIntegerRercursive, sizeArrayRercursive);//Mostrando o vetor ordenado
 
     return 0;
 }
