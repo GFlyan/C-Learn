@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1736267032 source:/home/flyan/Documents/GitHub/C-Learn/Ex265/main.c
+	<stdio.h>
+	<stdlib.h>
+
