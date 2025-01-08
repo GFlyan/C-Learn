@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//Exercício 267: Inserção em Árvore Binária - 2ª VERSÃO
+
 typedef struct binaryTreeNode
 /*Estrutura que diz respeito aos dados de um nó
 de uma árvore binária*/
@@ -36,7 +38,7 @@ armazenando a árvore e o valor a ser inserido.*/
     }
 }
 
-void printBinaryTree(BinaryTreeNode *binaryTree)
+void printBinaryTree1(BinaryTreeNode *binaryTree)
 /*Procedimento que imprime os valores contidos
 em uma árvore binária.
 
@@ -45,18 +47,33 @@ Recebe como parâmetro o endereço do nó raiz.*/
     if(binaryTree)
     /*Caso o nó fornecido não esteja vazio*/
     {
-        printBinaryTree(binaryTree->left);//Chamada recursiva da fuñção para imprimir a partir do nó mais a esquerda
+        printBinaryTree1(binaryTree->left);//Chamada recursiva da fuñção para imprimir a partir do nó mais a esquerda
         printf("%d ", binaryTree->value);//Impressão do valor contido no nó
-        printBinaryTree(binaryTree->right);//Chamada recursiva para imprimir um nó a direita após imprimir um nó a esquerda
+        printBinaryTree1(binaryTree->right);//Chamada recursiva para imprimir um nó a direita após imprimir um nó a esquerda
     }
 }
+
+void printBinaryTree2(BinaryTreeNode *binaryTree)
+/*Procedimento que imprime os valores contidos
+em uma árvore binária.
+
+Recebe como parâmetro o endereço do nó raiz.*/{
+    if(binaryTree)
+    /*Caso o nó fornecido não esteja vazio*/
+    {
+        printf("%d ", binaryTree->value);//Imprime o valor do nó
+        printBinaryTree2(binaryTree->left);//Chamada recursiva para imprimir o nó a esquerda
+        printBinaryTree2(binaryTree->right);//Chamada recursiva para imprimir o nó a direita
+    }
+}
+
 
 int main() {
     BinaryTreeNode *binaryTree = NULL;//Atribuindo NULL como endereço de memória
     int userValue;//Definindo uma variável que será atribuido um valor fornecido pelo usuário
     do {
         printf("--------------------------------------------\n");
-        printf("1 - INSERIR\n2 - IMPRIMIR\n0 - SAIR\n");
+        printf("1 - INSERIR\n2 - IMPRIMIR (1ª VERSAO)\n3 - IMPRIMIR (2ª VERSAO)\n0 - SAIR\n");
         printf("--------------------------------------------\n");
         printf("OPCAO: ");
         scanf("%d", &userValue);//Atribuindo um valor fornecido pelo usuário
@@ -77,7 +94,7 @@ int main() {
                 //Caso exista nós na árvore
                 {
                     printf("--------------------------------------------\n");
-                    printBinaryTree(binaryTree);//Acionando o procedimento que mostra os valores contidos na árvore binária
+                    printBinaryTree1(binaryTree);//Acionando um dos procedimentos que mostra os valores contidos na árvore binária
                     printf("\n--------------------------------------------\n");
                 } else //Caso não exista nós na árvore
                 {
@@ -86,6 +103,21 @@ int main() {
                     printf("--------------------------------------------\n");
                 }
                 break;
+                case 3:
+                if(binaryTree)
+                //Caso exista nós na árvore
+                {
+                    printf("--------------------------------------------\n");
+                    printBinaryTree2(binaryTree);//Acionando um dos procedimentos que mostra os valores contidos na árvore binária
+                    printf("\n--------------------------------------------\n");
+                } else //Caso não exista nós na árvore
+                {
+                    printf("--------------------------------------------\n");
+                    printf("ARVORE VAZIA\n");
+                    printf("--------------------------------------------\n");
+                }
+                break;
+
             default:
                 if(userValue != 0)
                 //Caso o usuário forneça um valor de opção inválida

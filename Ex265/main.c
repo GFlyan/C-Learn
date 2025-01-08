@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Exercício 265: Inserção em uma Árvore Binária - 1ª VERSÃO
+//Exercício 265: Inserção em Árvore Binária - 1ª VERSÃO
 
 typedef struct nodeBinaryTree
 /*Criando uma estrutura que diz respeito
 à composição dos nós de uma árvore binária*/
 {
     int value;//Campo que diz respeito ao valor
-    struct nodeTree *left, *right;//Campos que dizem respeito respectivamente aos endereços do nó a esquerda e do nó a direita
+    struct nodeBinaryTree *left, *right;//Campos que dizem respeito respectivamente aos endereços do nó a esquerda e do nó a direita
 }NodeBinaryTree;
 
 NodeBinaryTree* insertBinaryTree(NodeBinaryTree *binaryTree, int value)
