@@ -1,48 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Exercício 265: Inserção em uma Árvore Binária - 1ª VERSÃO
-
-typedef struct nodeBinaryTree
-/*Criando uma estrutura que diz respeito
-à composição dos nós de uma árvore binária*/
+typedef struct binaryTreeNode
+/*Estrutura que diz respeito aos dados de um nó
+de uma árvore binária*/
 {
-    int value;//Campo que diz respeito ao valor
-    struct nodeTree *left, *right;//Campos que dizem respeito respectivamente aos endereços do nó a esquerda e do nó a direita
-}NodeBinaryTree;
+    int value;//Campo que diz respeito ao valor do nó
+    struct binaryTreeNode *left, *right;//Campos que dizem respeito aos nós filhos respectivamente sendo, nó a esquerda e nó a direita
+} BinaryTreeNode;
 
-NodeBinaryTree* insertBinaryTree(NodeBinaryTree *binaryTree, int value)
-/*Função que insere um novo nó na árvore binária, caso não exista
-nenhum nó é inserido o primeiro novo, ou seja, o nó raiz, sendo
-posteriormente inserido os nós filhos a cada chamada da função
-insertBinaryTree.
+void insertBinaryTree(BinaryTreeNode **binaryTree, int value)
+/*Procedimento que insere um novo nó na árvore binária.
 
-Recebe como parâmetro o endereço de memória do nó raiz e o valor a ser
-inserido.*/
+Recebe como parâmetro o endereço do ponteiro que está
+armazenando a árvore e o valor a ser inserido.*/
 {
-    if(!binaryTree)
-    /*Caso o nó analizado não exista, será criado um novo nó para inserção do valor na árvore*/
-     {
-        binaryTree = malloc(sizeof(NodeBinaryTree));//Alocando memória para o nó, fazendo assim com que ele exista
-        binaryTree->left = NULL;//Atribuindo NULL como endereço para o nó filho a esquerda
-        binaryTree->right = NULL;//Atribuindo NULL como endereço para o nó filho a direita
-        binaryTree->value = value;//Atribuindo o valor do nó
+    if(!(*binaryTree))
+    /*Caso o nó analisado esteja vazio.*/
+    {
+        *binaryTree = malloc(sizeof(BinaryTreeNode));//Alocando endereço de memória como conteudo para um ponteiro
+        (*binaryTree)->value = value;//Ponteiro recebe um valor para um campo apontado do tipo inteiro
+        (*binaryTree)->left = NULL;//Ponteiro recebe NULL para um campo apontado do tipo ponteiro
+        (*binaryTree)->right = NULL;//Ponteiro recebe NULL para um campo apontado do tipo ponteiro
         printf("--------------------------------------------\n");
         printf("VALOR INSERIDO\n");
         printf("--------------------------------------------\n");
-        return binaryTree;//Retornando para o ponteiro passado como parâmetro um novo conteúdo, sendo um endereço de memória
-    } else
-    /*Caso o nó analisado exista*/
+    }
+    else
+    /*Caso o nó analisado não esteja vazio*/
     {
-        if(value < binaryTree->value) binaryTree->left = insertBinaryTree(binaryTree->left, value);
-        /*Caso o valor parametrado seja menor que o valor contido no nó, ele será inserido em um nó a esquerda*/
-        else binaryTree->right = insertBinaryTree(binaryTree->right, value);
-        /*Caso o valor parametrado seja maior que o valor contido no nó, ele será inserido em um nó a direita*/
-        return binaryTree; //Retornando a modificação feita na árvore para o nó raiz
+        if(value < (*binaryTree)->value) insertBinaryTree(&((*binaryTree)->left), value);
+        /*Se o valor parametrado for menor que o valor contido no nó, o endereço do nó a esquerda será o novo endereço a ser analisado*/
+        else insertBinaryTree(&((*binaryTree)->right), value);
+        /*Se o valor parametrado for maior que o valor contido no nó, o endereço do nó a direita será o novo endereço a ser analisado*/
     }
 }
 
-void printBinaryTree(NodeBinaryTree *binaryTree)
+void printBinaryTree(BinaryTreeNode *binaryTree)
 /*Procedimento que imprime os valores contidos
 em uma árvore binária.
 
@@ -58,7 +52,7 @@ Recebe como parâmetro o endereço do nó raiz.*/
 }
 
 int main() {
-    NodeBinaryTree *binaryTree = NULL;//Atribuindo NULL como endereço de memória
+    BinaryTreeNode *binaryTree = NULL;//Atribuindo NULL como endereço de memória
     int userValue;//Definindo uma variável que será atribuido um valor fornecido pelo usuário
     do {
         printf("--------------------------------------------\n");
@@ -76,7 +70,7 @@ int main() {
                 printf("INSIRA UM VALOR NA ÁRVORE: ");
                 scanf("%d", &value);//Atribuindo um valor fornecido pelo usuário
                 printf("--------------------------------------------\n");
-                binaryTree = insertBinaryTree(binaryTree, value);//Acionando a função que insere um novo valor na árvore binária
+                insertBinaryTree(&binaryTree, value);//Acionando o procedimento que insere um novo valor na árvore binária
                 break;
             case 2:
                 if(binaryTree)
