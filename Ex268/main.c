@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Exercício 268: Inserção em Árvore Binária - 3ª VERSÃO
+//Exercício 268: Inserção em Árvore Binária de Busca - 3ª VERSÃO
 
 typedef struct binaryTreeNode
 /*Estrutura que diz respeito aos nós de uma

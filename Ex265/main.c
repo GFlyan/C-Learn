@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Exercício 265: Inserção em Árvore Binária - 1ª VERSÃO
+//Exercício 265: Inserção em Árvore Binária de Busca - 1ª VERSÃO
 
 typedef struct nodeBinaryTree
 /*Criando uma estrutura que diz respeito

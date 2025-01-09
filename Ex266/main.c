@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Exercício 266: Imprimindo os valores de uma Árvore Binária
+//Exercício 266: Imprimindo os valores de uma Árvore Binária de Busca
 
 typedef struct nodeBinaryTree
 /*Criando uma estrutura que diz respeito
