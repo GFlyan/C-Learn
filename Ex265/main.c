@@ -44,17 +44,15 @@ inserido.*/
 
 void printBinaryTree(NodeBinaryTree *binaryTree)
 /*Procedimento que imprime os valores contidos
-em uma árvore binária.
+em uma árvore binária de forma crescente.
 
 Recebe como parâmetro o endereço do nó raiz.*/
 {
-    if(binaryTree)
+    if(!binaryTree) return;
     /*Caso o nó fornecido não esteja vazio*/
-    {
-        printBinaryTree(binaryTree->left);//Chamada recursiva da fuñção para imprimir a partir do nó mais a esquerda
-        printf("%d ", binaryTree->value);//Impressão do valor contido no nó
-        printBinaryTree(binaryTree->right);//Chamada recursiva para imprimir um nó a direita após imprimir um nó a esquerda
-    }
+    printBinaryTree(binaryTree->left);//Chamada recursiva da fuñção para imprimir a partir do nó mais a esquerda
+    printf("%d ", binaryTree->value);//Impressão do valor contido no nó
+    printBinaryTree(binaryTree->right);//Chamada recursiva para imprimir um nó a direita após imprimir um nó a esquerda
 }
 
 int main() {

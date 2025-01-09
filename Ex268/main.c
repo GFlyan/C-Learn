@@ -56,7 +56,6 @@ void printBinaryTree(BinaryTreeNode *binaryTree)
 int main()
 {
     BinaryTreeNode *binaryTree = NULL;//Criando um ponteiro e atribuindo NULL como endereço de memória
-    printf("%p\n", &binaryTree);
     int userValue;//Criando uma variável que irá receber um valor informado pelo usuário
     do {
         printf("------------------------------------------\n");
