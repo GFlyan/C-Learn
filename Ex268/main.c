@@ -43,42 +43,47 @@ do ponteiro da raiz e o valor a ser inserido.*/
     printf("------------------------------------------\n");
 }
 
-void printBinaryTree(BinaryTreeNode *binaryTree) {
-    if(!binaryTree) return;
-    printBinaryTree(binaryTree->left);
-    printf("%d ", binaryTree->value);
-    printBinaryTree(binaryTree->right);
+void printBinaryTree(BinaryTreeNode *binaryTree)
+/*Procedimento que mostra os valores contidos em uma
+árvore binária de forma crescente.*/
+{
+    if(!binaryTree) return;//Caso o conteudo do ponteiro analisado seja nulo
+    printBinaryTree(binaryTree->left);//Chamada recursiva do nó mais a esquerda existente na árvore
+    printf("%d ", binaryTree->value);//Mostra o valor do nó
+    printBinaryTree(binaryTree->right);//Chamada recursiva do nó a direita de cada raiz
 }
 
 int main()
 {
-    BinaryTreeNode *binaryTree = NULL;
+    BinaryTreeNode *binaryTree = NULL;//Criando um ponteiro e atribuindo NULL como endereço de memória
     printf("%p\n", &binaryTree);
-    int userValue;
+    int userValue;//Criando uma variável que irá receber um valor informado pelo usuário
     do {
         printf("------------------------------------------\n");
         printf("1 - INSERIR\n2 - IMPRIMIR\n0 - SAIR\n");
         printf("------------------------------------------\n");
         printf("INSIRA: ");
-        scanf("%d", &userValue);
+        scanf("%d", &userValue);//Atribuindo um valor fornecido pelo usuário
         printf("------------------------------------------\n");
         switch(userValue) {
             case 1:
-                int value;
+                int value;//Criando uma variável que irá receber um valor informado pelo usuário
                 printf("------------------------------------------\n");
                 printf("VALOR: ");
-                scanf("%d", &value);
+                scanf("%d", &value);//Atribuindo um valor fornecido pelo usuário
                 printf("------------------------------------------\n");
-                insertBinaryTree(&binaryTree, value);
+                insertBinaryTree(&binaryTree, value);//Acionando o procedimento que insere um novo valor na árvore binária
                 break;
             case 2:
                 if(binaryTree)
+                /*Caso a árvore tenha pelo menos um nó*/
                 {
                     printf("------------------------------------------\n");
-                    printBinaryTree(binaryTree);
+                    printBinaryTree(binaryTree);//Acionando o procedimento que mostra todos os valores contidos na árvore binária de forma crescente
                     printf("\n------------------------------------------\n");
                 }
                 else
+                /*Caso não tenha nenhum nó na árvore*/
                 {
                     printf("------------------------------------------\n");
                     printf("ARVORE VAZIA\n");
@@ -87,12 +92,14 @@ int main()
                 break;
             default:
                 if(userValue != 0)
+                /*Caso o valor fornecido pelo usuário seja um valor inválido*/
                 {
                     printf("------------------------------------------\n");
                     printf("OPCAO INVALIDA\n");
                     printf("------------------------------------------\n");
                 }
                 else
+                /*Caso o usuário forneça o valor 0*/
                 {
                     printf("------------------------------------------\n");
                     printf("ARVORE FINALIZADA\n");
@@ -100,5 +107,5 @@ int main()
                 }
                 break;
         }
-    } while(userValue != 0);
+    } while(userValue != 0);//Realizar enquanto o usuário não fornecer o valor 0
 }
