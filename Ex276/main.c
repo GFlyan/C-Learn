@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Exercício 275: Remover nó com um filho em uma Árvore Binária de Busca
+//Exercício 276: Remover nó com dois filhos em uma Árvore Binária de Busca
 
 typedef struct binaryTreeNode
 /*Criando uma estrutura que diz respeito
@@ -113,9 +113,8 @@ Recebe como parâmetro o endereço do primeiro nó.*/
 }
 
 BinaryTreeNode *removeBinaryTreeNode(BinaryTreeNode *binaryTree, int value)
-/*Função que libera um nó folha ou com apenas um filho, qual possui o
-valor parametrado e retorna NULL, caso seja um nó folha, ou retorna o
-endereço do nó filho para o ponteiro que executou a função.
+/*Função que libera um nó folha, ou um nó com apenas um filho, ou um nó com
+dois filhos.
 
 Recebe o nó raiz e o valor contido no nó a ser removido.*/
 {
@@ -139,8 +138,30 @@ Recebe o nó raiz e o valor contido no nó a ser removido.*/
         else
         /*Caso não seja um nó folha*/
         {
-            if(binaryTree->left && binaryTree->right) printf("NÃO É NEM UM NÓ FOLHA OU NÓ COM APENAS 1 FILHO\n");
+            if(binaryTree->left && binaryTree->right)
             /*Caso seja um nó com dois filhos*/
+            {
+                BinaryTreeNode **auxTravel = &(binaryTree->right), *auxNode;
+                /*Criando um ponteiro pra ponteiro que recebe como conteudo o endereço
+                do ponteiro do nó que possui o nó a direita do nó a ser removido que terá
+                a função de percorrer a árvore binária.
+
+                Definindo também um ponteiro que será */
+
+                while((*auxTravel)->left)//Enquanto o próximo nó a esquerda existir
+                    auxTravel = &((*auxTravel)->left);//O ponteiro recebe o endereço do ponteiro que contém o próximo nó a esquerda
+
+                auxNode = *auxTravel;//Ponteiro auxiliar recebe o endereço de memória do nó com o menor dos maiores valores em relação ao nó a ser removido
+
+                if((*auxTravel)->right) *auxTravel = (*auxTravel)->right;//Caso exista um nó filho a direita
+                else *auxTravel = NULL;//Caso não exista um nó filho a direita
+
+                auxNode->left = binaryTree->left;//Atribuindo os nós filhos a esquerda do nó a ser removido ao ponteiro
+                auxNode->right = binaryTree->right;//Atribuindo os nós filhos a direita do nó a ser removido ao ponteiro
+                free(binaryTree);//Liberando o nó a ser removido
+                printf("NÓ SUBSTITUTO VALE: %d\n", auxNode->value);
+                return auxNode;//Retornando o nó que irá substituir o nó a ser removido
+            }
             else
             /*Caso seja um nó com apenas um filho*/
             {
@@ -172,8 +193,7 @@ int main()
         printf("------------------------------------------\n");
         printf("\tOPCOES\n");
         printf("------------------------------------------\n");
-        printf("1 - INSERIR\n2 - PROCURAR\n3 - MOSTRAR\n4 - ALTURA\n5 - QUANTIDADE DE NÓS\n6 - QUANTIDADE DE NÓS FOLHAS\n");
-        printf("7 - REMOVER NÓ FOLHA || COM APENAS 1 FILHO\n0 - SAIR\n");
+        printf("1 - INSERIR\n2 - PROCURAR\n3 - MOSTRAR\n4 - ALTURA\n5 - QUANTIDADE DE NÓS\n6 - QUANTIDADE DE NÓS FOLHAS\n7 - REMOVER\n0 - SAIR\n");
         printf("------------------------------------------\n");
         printf("INSIRA: ");
         scanf("%d", &optionValue);//Atribuindo um valor fornecido pelo usuário
@@ -250,7 +270,7 @@ int main()
                 printf("REMOVA: ");
                 scanf("%d", &removeLeafValue);
                 printf("------------------------------------------\n");
-                binaryTree = removeBinaryTreeNode(binaryTree, removeLeafValue);//Acionando a função que remove um nó folha ou um nó com apenas um filho
+                binaryTree = removeBinaryTreeNode(binaryTree, removeLeafValue);//Acionando a função que remove um nó
                 printf("------------------------------------------\n");
                 break;
             default:
