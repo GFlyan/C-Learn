@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//Exercício 274: Remover nó folha de uma Árvore Binária de Busca
+//Exercício 275: Remover nó com filho em uma Árvore Binária de Busca
 
 typedef struct binaryTreeNode
 /*Criando uma estrutura que diz respeito
@@ -112,9 +112,11 @@ Recebe como parâmetro o endereço do primeiro nó.*/
     else return amountLeafBinaryTreeNodes(binaryTree->left) + amountLeafBinaryTreeNodes(binaryTree->right);//Caso seja um nó que tenha filhos
 }
 
-BinaryTreeNode *removeLeafBinaryTreeNode(BinaryTreeNode *binaryTree, int value)
-/*Função que libera o nó folha que possui o valor parametrado e
-retorna NULL para o ponteiro que executou a função.
+BinaryTreeNode *removeBinaryTreeNode(BinaryTreeNode *binaryTree, int value)
+/*Função que libera um nó folha que possui o valor parametrado e
+retorna NULL para o ponteiro que executou a função, ou remove um nó
+com apenas um filho, onde o nó filho será o próximo nó do nó que
+tinha o nó removido como filho.
 
 Recebe o nó raiz e o valor contido no nó a ser removido.*/
 {
@@ -135,18 +137,26 @@ Recebe o nó raiz e o valor contido no nó a ser removido.*/
             printf("VALOR REMOVIDO\n");
             return NULL;//Retorna NULL para o ponteiro que executou a função
         }
-        else if(binaryTree-> value == value)
-        /*Caso o tenha nós filhos*/
+        else
+        /*Caso não seja um nó folha*/
         {
-            printf("NAO É UM VALOR EM UM NÓ FOLHA\n");
+            if(binaryTree->left && binaryTree->right) printf("NÃO É NEM UM NÓ FOLHA OU NÓ COM APENAS 1 FILHO\n");
+            /*Caso seja um nó com dois filhos*/
+            else
+            /*Caso seja um nó com apenas um filho*/
+            {
+                if(binaryTree->left) binaryTree = binaryTree->left;//Caso o nó filho seja o nó a esquerda
+                else binaryTree = binaryTree->right;//Caso o nó filho seja o nó a direita
+                printf("VALOR REMOVIDO\n");
+            }
         }
     }
     else
     /*Caso seja um nó com filhos*/
     {
-        if(value < binaryTree->value) binaryTree->left = removeLeafBinaryTreeNode(binaryTree->left, value);
+        if(value < binaryTree->value) binaryTree->left = removeBinaryTreeNode(binaryTree->left, value);
         /*Caso o valor parametrado seja menor que o valor contido no nó, o nó a esquerda executará recursivamente a função parametrando o endereço contido nele mesmo*/
-        else if (value > binaryTree->value) binaryTree->right = removeLeafBinaryTreeNode(binaryTree->right, value);
+        else binaryTree->right = removeBinaryTreeNode(binaryTree->right, value);
         /*Caso o valor parametrado seja maior que o valor contido no nó, o nó a direita executará recursivamente a função parametrando o endereço contido nele mesmo*/
     }
         return binaryTree;//Retorna o endereço de memória parametrado
@@ -161,7 +171,7 @@ int main()
         printf("\tOPCOES\n");
         printf("------------------------------------------\n");
         printf("1 - INSERIR\n2 - PROCURAR\n3 - MOSTRAR\n4 - ALTURA\n5 - QUANTIDADE DE NÓS\n6 - QUANTIDADE DE NÓS FOLHAS\n");
-        printf("7 - REMOVER NÓ FOLHA\n0 - SAIR\n");
+        printf("7 - REMOVER NÓ FOLHA || COM APENAS 1 FILHO\n0 - SAIR\n");
         printf("------------------------------------------\n");
         printf("INSIRA: ");
         scanf("%d", &optionValue);//Atribuindo um valor fornecido pelo usuário
@@ -238,7 +248,7 @@ int main()
                 printf("REMOVA: ");
                 scanf("%d", &removeLeafValue);
                 printf("------------------------------------------\n");
-                binaryTree = removeLeafBinaryTreeNode(binaryTree, removeLeafValue);//Acionando a função que remove um nó folha
+                binaryTree = removeBinaryTreeNode(binaryTree, removeLeafValue);//Acionando a função que remove um nó folha ou um nó com apenas um filho
                 printf("------------------------------------------\n");
                 break;
             default:
