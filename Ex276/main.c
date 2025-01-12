@@ -152,13 +152,16 @@ Recebe o nó raiz e o valor contido no nó a ser removido.*/
                     auxTravel = &((*auxTravel)->left);//O ponteiro recebe o endereço do ponteiro que contém o próximo nó a esquerda
 
                 auxNode = *auxTravel;//Ponteiro auxiliar recebe o endereço de memória do nó com o menor dos maiores valores em relação ao nó a ser removido
+                //*auxTravel = removeBinaryTreeNode(*auxTravel, (*auxTravel)->value);
 
                 if((*auxTravel)->right) *auxTravel = (*auxTravel)->right;//Caso exista um nó filho a direita
                 else *auxTravel = NULL;//Caso não exista um nó filho a direita
 
                 auxNode->left = binaryTree->left;//Atribuindo os nós filhos a esquerda do nó a ser removido ao ponteiro
                 auxNode->right = binaryTree->right;//Atribuindo os nós filhos a direita do nó a ser removido ao ponteiro
+
                 free(binaryTree);//Liberando o nó a ser removido
+
                 printf("NÓ SUBSTITUTO VALE: %d\n", auxNode->value);
                 return auxNode;//Retornando o nó que irá substituir o nó a ser removido
             }
