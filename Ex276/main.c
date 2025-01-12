@@ -152,7 +152,8 @@ Recebe o nó raiz e o valor contido no nó a ser removido.*/
                     auxTravel = &((*auxTravel)->left);//O ponteiro recebe o endereço do ponteiro que contém o próximo nó a esquerda
 
                 auxNode = *auxTravel;//Ponteiro auxiliar recebe o endereço de memória do nó com o menor dos maiores valores em relação ao nó a ser removido
-                //*auxTravel = removeBinaryTreeNode(*auxTravel, (*auxTravel)->value);
+
+                //*auxTravel = removeBinaryTreeNode(*auxTravel, (*auxTravel)->value); -> não ta funcionando corretamente com recursão
 
                 if((*auxTravel)->right) *auxTravel = (*auxTravel)->right;//Caso exista um nó filho a direita
                 else *auxTravel = NULL;//Caso não exista um nó filho a direita
