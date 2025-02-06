@@ -22,13 +22,13 @@ a um pivô*/
             leftPosition++;
         while(array[rightPosition] > pivot && leftPosition < rightPosition)
             rightPosition--;
-        if(leftPosition < rightPosition) {
+        if(leftPosition <= rightPosition) {
             int backup = array[leftPosition];
             array[leftPosition] = array[rightPosition];
             array[rightPosition] = backup;
         }
     }
-    return rightPosition;
+    return rightPosition;//Posição com o elemento na ordem correta
 }
 
 void fixDown(int *array, int fixPosition, int lastPosition)

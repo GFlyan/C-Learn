@@ -44,9 +44,13 @@ e a posição final do vetor que será processado.
         while(arrayInteger[rightPosition] > pivot && leftPosition < rightPosition)//Procurando do fim até o início um elemento menor que o pivô
             rightPosition--;//Incremento unitário a variável que representa a posição que terá um valor menor que o pivõ
 
-        int backup = arrayInteger[leftPosition];//Criando uma variável auxiliar para realizar swap entre dois dados
-        arrayInteger[leftPosition] = arrayInteger[rightPosition];//Swap de conteúdos, posição mais ao início recebe um valor menor do que o antes contido
-        arrayInteger[rightPosition] = backup;//Swap de conteúdo, a posição mais ao fim recebe um valor maior do que o antes contido
+        if(leftPosition <= rightPosition)
+        //Caso a posição a esquerda seja menor que a posição a direita e obedeçam a regra em relação ao pivô
+        {
+            int backup = arrayInteger[leftPosition];//Criando uma variável auxiliar para realizar swap entre dois dados
+            arrayInteger[leftPosition] = arrayInteger[rightPosition];//Swap de conteúdos, posição mais ao início recebe um valor menor do que o antes contido
+            arrayInteger[rightPosition] = backup;//Swap de conteúdo, a posição mais ao fim recebe um valor maior do que o antes contido
+        }
      }
     //A este ponto begin é igual a end, início igual ao fim, significando que o posição ja está organizada
 
