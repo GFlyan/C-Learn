@@ -17,7 +17,7 @@ PASSO A PASSO
 ->Escolha do pivô: media dos 3 elementos [INÍCIO, MEIO, FIM]
 */
 
-int partition(int *arrayInteger, int begin, int end)
+int partition(int *arrayInteger, int leftPosition, int rightPosition)
 /*
 Função que define um pivo baseando-se no vetor informado.
 
@@ -31,30 +31,29 @@ Recebe como parâmetro um array, a posição inicial do vetor
 e a posição final do vetor que será processado.
 */
 {
-    int sizeArray = end+1;
-    while(begin<end) /*A condição de início do vetor < fim do vetor é importante
+    while(leftPosition < rightPosition) /*A condição de início do vetor < fim do vetor é importante
                        ao decorrer do quick sort, devido o decorrer das chamadas
                        recursivas, o array será subdivido em outros arrays
                        até chegar no array unitário, onde nenhum dos laços será
                        executado*/
     {
-        int pivot = ((arrayInteger[begin] + arrayInteger[end] + arrayInteger[(begin+end)/2])/3);//Definindo o elemento pivô
+        int pivot = ((arrayInteger[leftPosition] + arrayInteger[(leftPosition+rightPosition)/2] + arrayInteger[rightPosition])/3);//Definindo o elemento pivô
 
-        while(begin<end && arrayInteger[begin] <= pivot)//Procura do início ao fim de um vetor um elemento maior que o pivô
-            begin++;//Incremento unitário a variável que representa a posição que terá um valor maior que o pivô
-        while(begin<end && arrayInteger[end] > pivot)//Procurando do fim até o início um elemento menor que o pivô
-            end--;//Incremento unitário a variável que representa a posição que terá um valor menor que o pivõ
+        while(arrayInteger[leftPosition] <= pivot && leftPosition < rightPosition)//Procura do início ao fim de um vetor um elemento maior que o pivô
+            leftPosition++;//Incremento unitário a variável que representa a posição que terá um valor maior que o pivô
+        while(arrayInteger[rightPosition] > pivot && leftPosition < rightPosition)//Procurando do fim até o início um elemento menor que o pivô
+            rightPosition--;//Incremento unitário a variável que representa a posição que terá um valor menor que o pivõ
 
-        int aux = arrayInteger[begin];//Criando uma variável auxiliar para realizar swap entre dois dados
-        arrayInteger[begin] = arrayInteger[end];//Swap de conteúdos, posição mais ao início recebe um valor menor do que o antes contido
-        arrayInteger[end] = aux;//Swap de conteúdo, a posição mais ao fim recebe um valor maior do que o antes contido
+        int backup = arrayInteger[leftPosition];//Criando uma variável auxiliar para realizar swap entre dois dados
+        arrayInteger[leftPosition] = arrayInteger[rightPosition];//Swap de conteúdos, posição mais ao início recebe um valor menor do que o antes contido
+        arrayInteger[rightPosition] = backup;//Swap de conteúdo, a posição mais ao fim recebe um valor maior do que o antes contido
      }
     //A este ponto begin é igual a end, início igual ao fim, significando que o posição ja está organizada
 
-    return begin;//Retorna a posição já organizada que irá ser o ponto de divisão dos subvetores
+    return rightPosition;//Retorna a posição já organizada que irá ser o ponto de divisão dos subvetores
 }
 
-void quickSort(int *arrayInteger, int begin, int end)
+void quickSort(int *arrayInteger, int firstPosition, int lastPosition)
 /*
 Procedimento que ordena um vetor através do uso
 da função partição que faz swap entre elementos
@@ -66,15 +65,15 @@ Recebe como parâmetro um array inteiro, á posição
 inicial do vetor e a posição final do vetor.
 */
 {
-    if(begin>=end) return;//Caso seja o vetor unitário ordenado - PONTO DE PARADA
+    if(firstPosition >= lastPosition) return;//Caso seja o vetor unitário ordenado - PONTO DE PARADA
     {
-        int position = partition(arrayInteger, begin, end);/*Criando uma variável que aciona a função
+        int mid = partition(arrayInteger, firstPosition, lastPosition);/*Criando uma variável que aciona a função
                                                              partition, qual organiza equilibradamente os
                                                              valores do vetor em relação à um pivô e retorna
                                                              a posição do elemento pivô*/
 
-        quickSort(arrayInteger, begin, position-1);//Valores a esquerda, menores que o pivô
-        quickSort(arrayInteger, position+1, end);//Valores a direita, maiores que o pivô
+        quickSort(arrayInteger, firstPosition, mid-1);//Valores a esquerda, menores que o pivô
+        quickSort(arrayInteger, mid+1, lastPosition);//Valores a direita, maiores que o pivô
     }
 }
 

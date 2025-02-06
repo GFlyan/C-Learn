@@ -28,7 +28,7 @@ a um pivô*/
             array[rightPosition] = backup;
         }
     }
-    return leftPosition;
+    return rightPosition;
 }
 
 void fixDown(int *array, int fixPosition, int lastPosition)
@@ -112,7 +112,7 @@ Quick Sort + Heap Sort (ou Merge)*/
         //Acionando o Quick Sort diminuindo o limite ideal da altura da árvore de recursão
         int mid = partition(array, firstPosition, lastPosition);//Particiona o array em menores a esquerda e maiores a direita em relação a um pivo com mediana de 3
         intro(array, firstPosition, mid-1, maxDepth-1);//Acionamento da intro para o array particionado a esquerda diminuindo o limite ideal de recursão do Quick Sort
-        intro(array, mid, lastPosition, maxDepth-1);//Acionamento da intro para o array particionado a direita diminuindo o limite ideal de recursão do Quick Sort
+        intro(array, mid+1, lastPosition, maxDepth-1);//Acionamento da intro para o array particionado a direita diminuindo o limite ideal de recursão do Quick Sort
     }
 }
 
