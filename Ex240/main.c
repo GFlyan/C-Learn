@@ -71,7 +71,7 @@ bool priorityQueueFull(PriorityQueue *priorityQueue)
     return priorityQueue->lastPosition == priorityQueue->size;
 }
 
-void fixUp(int *arrayHeap, int lastPosition/*K*/)
+void fixUp(int *arrayHeap, int fixPosition/*K*/)
 /*Procedimento que concerta a Heap após a inserção
 de um novo elemento.
 
@@ -81,11 +81,11 @@ Recebe como parâmetros:
 -Valor que diz respeito a última posição do array que contém
 um elemento.*/
 {
-    while(lastPosition > 1 && (arrayHeap[lastPosition] > arrayHeap[lastPosition/2])) {
-        int backup = arrayHeap[lastPosition];
-        arrayHeap[lastPosition] = arrayHeap[lastPosition/2];
-        arrayHeap[lastPosition/2] = backup;
-        lastPosition = lastPosition/2;
+    while(fixPosition > 1 && (arrayHeap[fixPosition] > arrayHeap[fixPosition/2])) {
+        int backup = arrayHeap[fixPosition];
+        arrayHeap[fixPosition] = arrayHeap[fixPosition/2];
+        arrayHeap[fixPosition/2] = backup;
+        fixPosition = fixPosition/2;
     }
 }
 
