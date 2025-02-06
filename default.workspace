@@ -56,6 +56,7 @@
 		<Project filename="Ex237/Ex237.cbp" />
 		<Project filename="Ex238/Ex238.cbp" />
 		<Project filename="Ex239/Ex239.cbp" />
+		<Project filename="Ex240/Ex240.cbp" />
 		<Project filename="Ex242/Ex242.cbp" />
 		<Project filename="Ex243/Ex243.cbp" />
 		<Project filename="Ex244/Ex244.cbp" />
@@ -79,5 +80,7 @@
 		<Project filename="Ex332/Ex332.cbp" />
 		<Project filename="Ex333/Ex333.cbp" />
 		<Project filename="Ex334/Ex334.cbp" />
+		<Project filename="Ex335/Ex335.cbp" />
+		<Project filename="Ex336/Ex336.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>
