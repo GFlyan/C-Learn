@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1743712474 source:/home/flyan/Documents/GitHub/C-Learn/Ex340/main.c
+1743722120 source:/home/flyan/Documents/GitHub/C-Learn/Ex340/main.c
 	<stdio.h>
 	<stdlib.h>
 	<stdbool.h>

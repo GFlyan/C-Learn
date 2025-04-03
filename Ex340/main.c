@@ -134,6 +134,29 @@ Item insertItem(){
     return newItem;
 }
 
+int partition(Item *arrayST, int leftPosition, int rightPosition) {
+    Key pivot = (key(arrayST[leftPosition])+key(arrayST[(leftPosition+rightPosition)/2])+key(arrayST[rightPosition]))/3;
+    while(rightPosition > leftPosition) {
+        while(key(arrayST[leftPosition]) <= pivot && rightPosition > leftPosition) leftPosition++;
+        while(key(arrayST[rightPosition]) > pivot && rightPosition > leftPosition) rightPosition--;
+        if(leftPosition <= rightPosition) {
+            Item aux = arrayST[leftPosition];
+            arrayST[leftPosition] = arrayST[rightPosition];
+            arrayST[rightPosition] = aux;
+            leftPosition++;
+            rightPosition--;
+        }
+    }
+    return rightPosition;
+} //Partition da STsort
+
+void STsort(Item *arrayST, int firstPosition, int lastPosition) {
+    if(firstPosition >= lastPosition) return;
+    int mid = partition(arrayST, firstPosition, lastPosition);
+    STsort(arrayST, firstPosition, mid-1);
+    STsort(arrayST, mid, lastPosition);
+} //Organiza a SYMBOL TABLE
+
 void printSTempty() {
     printf("------------------------------------------\n");
     printf("SYMBOL TABLE VAZIA\n");
@@ -162,7 +185,7 @@ int main()
     int option;
     do {
         printf("------------------------------------------\n");
-        printf("1 - INSERIR\n2 - PROCURAR\n3 - REMOVER\n4 - MOSTRAR\n0 - SAIR\n");
+        printf("1 - INSERIR\n2 - PROCURAR\n3 - REMOVER\n4 - MOSTRAR\n5 - ORDENAR\n0 - SAIR\n");
         printf("------------------------------------------\n");
         printf("INSIRA: ");
         scanf("%d", &option);
@@ -198,6 +221,15 @@ int main()
                 break;
             case 4:
                 STempty() ? printSTempty() : printST();
+                break;
+            case 5:
+                if(STempty()) printSTempty();
+                else {
+                    STsort(STarray, 0, amountItens-1);
+                    printf("------------------------------------------\n");
+                    printf("SYMBOL TABLE ORDENADA\n");
+                    printf("------------------------------------------\n");
+                }
                 break;
             default:
                 printf("------------------------------------------\n");
