@@ -32,10 +32,10 @@ e a posição final do vetor que será processado.
 */
 {
     while(leftPosition < rightPosition) /*A condição de início do vetor < fim do vetor é importante
-                       ao decorrer do quick sort, devido o decorrer das chamadas
-                       recursivas, o array será subdivido em outros arrays
-                       até chegar no array unitário, onde nenhum dos laços será
-                       executado*/
+                                       ao decorrer do quick sort, devido o decorrer das chamadas
+                                       recursivas, o array será subdivido em outros arrays
+                                       até chegar no array unitário, onde nenhum dos laços será
+                                       executado*/
     {
         int pivot = ((arrayInteger[leftPosition] + arrayInteger[(leftPosition+rightPosition)/2] + arrayInteger[rightPosition])/3);//Definindo o elemento pivô
 

@@ -73,7 +73,7 @@ Custo O(1)*/
 }
 
 int STcount()
-/*Função que retorna a quantidade de itens na SYMBOL TABLE.
+/*Função que retorna a quantidade de itens existentes na SYMBOL TABLE.
 
 Custo O(1)*/
 {
