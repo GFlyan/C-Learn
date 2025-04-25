@@ -7,7 +7,7 @@ Exercício 226: Pilha funcional
 */
 
 int insertValue()
-/*Criando uma função que gera um valor aleatório e retorna esse valor*/
+//Criando uma função que gera um valor aleatório e retorna esse valor
 {
     int value;//Criando uma variável que diz respeito ao valor que será atribuido ao valor de um nó
     srand(time(NULL));//Definindo o tempo como semente da função rand

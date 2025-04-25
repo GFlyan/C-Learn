@@ -63,8 +63,8 @@ elemento da lista.
 {
     if(linkedList)//Caso o nó exista. - PONTO DE PARADA
     {
-        printf("%d\n", linkedList->value);//Mostrando cada valor da lista.
-        printLinkedList(linkedList->nextNode);//Chamada recuriva utilizando os próximos nós como parâmetro.
+        printf("%d\n", linkedList->value);//Mostrando cada valor da lista
+        printLinkedList(linkedList->nextNode);//Chamada recuriva utilizando os próximos nós como parâmetro
     }
 }
 
