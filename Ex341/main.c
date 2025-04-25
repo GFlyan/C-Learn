@@ -21,7 +21,9 @@ Desvantagens:
 
     STinit tem custo O(maxItens), sendo que O(maxItens) >= O(n)
 
-    Não admite elementos repetidos
+    Não admite elementos repetidos.
+
+    Inserção admite apenas ID's menores que o tamanho limitante do vetor
 
     ID < maxItens
 */

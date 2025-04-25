@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1743912756 source:/home/flyan/Documents/GitHub/C-Learn/Ex342/main.c
+	<stdio.h>
+	<stdlib.h>
+	<stdbool.h>
+
