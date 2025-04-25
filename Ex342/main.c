@@ -5,6 +5,7 @@
 #define Data int
 #define key(item) (item.key)
 #define eq(valueA, valueB) (valueA == valueB)
+#define NULLItem (Item) {-1}
 
 /*Exercício 342: SYMBOL TABLE - LINKED LIST
 
@@ -35,111 +36,121 @@ Desvantagem:
 typedef struct {
     Key key;
     Data data;
-}Item;
+}Item;//Diz respeito a um item
 
 typedef struct node{
     Item item;
     struct node *nextNode;
-}STnode;
+}STnode;//Diz respeito ao nó de uma lista encadeada
 
-static STnode *STlinkedList;
+STnode *STlinkedList, *NULLNode;//Nó cabeça da lista encadeada e um nó vazio NULLNode
 
-bool STinsert(Item newItem) {
-    if(!STlinkedList) {
-        STlinkedList = malloc(sizeof(STnode));
-        STlinkedList->item = newItem;
-        STlinkedList->nextNode = NULL;
-        return true;
-    } else {
-        STnode *aux = STlinkedList;
-        while(aux->nextNode) aux = aux->nextNode;
-        aux->nextNode = malloc(sizeof(STnode));
-        aux = aux->nextNode;
-        aux->item = newItem;
-        aux->nextNode = NULL;
-        return true;
-    }
-    return false;
-}
+STnode* NEW(Item newItem, STnode* nextNode) {
+    STnode *newNode = malloc(sizeof(STnode));
+    newNode->item = newItem;
+    newNode->nextNode = nextNode;
+    return newNode;
+}//Cria e retorna um novo nó com as especificações passadas
+
+void STinit() {
+    NULLNode = NEW(NULLItem, 0);
+    STlinkedList = NULLNode;
+}//Inicializa a lista encadeada, atribuindo o NULLNode, STinit - caixa preta
+
+
+STnode* insert(Item newItem, STnode *insertNode) {
+    if(insertNode == NULLNode) return insertNode = NEW(newItem, NULLNode);
+    insertNode->nextNode = insert(newItem, insertNode->nextNode);
+    return insertNode;
+}//Insere um novo item no final da lista com as especificações parametrizadas
+
+void STinsert(Item newItem) {
+    STlinkedList = insert(newItem, STlinkedList);
+}//STinsert - caixa preta
+
+STnode* search(Key id, STnode *searchNode) {
+  if(searchNode == NULLNode) return NULLNode;
+  if(eq(id, key(searchNode->item))) return searchNode;
+  return search(id, searchNode->nextNode);
+}//Procura se um item com dado ID existe na ST
 
 bool STsearch(Key id) {
-    STnode **auxSearch = &STlinkedList;
-    while(*auxSearch) {
-        if(eq(id, (*auxSearch)->item.key)) return true;
-        auxSearch = &(*auxSearch)->nextNode;
-    }
-    return false;
-}
+    return search(id, STlinkedList) != NULLNode ? true : false;
+}//STsearch - caixa preta
 
-bool STremove(Key id) {
-    STnode **auxRemove = &STlinkedList;
-    while(*auxRemove) {
-        if(eq(id, (*auxRemove)->item.key)) {
-            *auxRemove = (*auxRemove)->nextNode;
-            return true;
-        }
-        auxRemove = &(*auxRemove)->nextNode;
-    }
-    return false;
-}
+STnode* removeN(Key id, STnode *removeNode) {
+  if(removeNode == NULLNode) {
+    printf("ITEM NÃO ENCONTRADO\n");
+    return NULLNode;
+  }
+  if(eq(id, key(removeNode->item))) {
+    printf("ITEM REMOVIDO\n");
+    return removeNode->nextNode;
+  }
+  removeNode->nextNode = removeN(id, removeNode->nextNode);
+  return removeNode;
+}//Remove um item dado o ID parametrizado
+
+void STremove(Key id) {
+    STlinkedList = removeN(id, STlinkedList);
+}//STremove - caixa preta
 
 Item insertItem() {
     Item newItem;
     printf("------------------------------------------\n");
-    printf("INSIRA O ID: ");
+    printf("INSIRA O ID:");
     scanf("%d", &newItem.key);
     printf("------------------------------------------\n");
-    newItem.data = NULL;
+    newItem.data = 0;
     return newItem;
-}
+}//Cria e retorna um novo item com ID fornecido pelo usuário
 
 void printST(STnode *ST) {
-    if(!ST) return;
-    printf(" %d ", ST->item.key);
+    if(ST == NULLNode) return;
+    printf(" %d ", key(ST->item));
     printST(ST->nextNode);
-}
+}//Mostra todos os elementos existentes na ST
 
 void printfSTempty() {
     printf("------------------------------------------\n");
     printf("SYMBOL TABLE VAZIA\n");
     printf("------------------------------------------\n");
-}
+}//Mensagem de ST vazia
 
 int main()
 {
     int option;
+    STinit();
     do {
         printf("------------------------------------------\n");
-        printf("1 - INSERIR\n2 - REMOVER\n3 - PROCURAR\ qqqqn4 - MOSTRAR\n0 - SAIR\n");
+        printf("1 - INSERIR\n2 - REMOVER\n3 - PROCURAR\n4 - MOSTRAR\n0 - SAIR\n");
         printf("------------------------------------------\n");
-        printf("INSIRA: ");
+        printf("INSIRA:");
         scanf("%d", &option);
         switch(option) {
             case 1:
-
                 printf("------------------------------------------\n");
-                printf(STinsert(insertItem()) ? "ITEM INSERIDO\n" : "ITEM NÃO INSERIDO\n");
+                STinsert(insertItem());
+                printf("ITEM INSERIDO\n");
                 printf("------------------------------------------\n");
                 break;
             case 2:
-                if(STlinkedList) {
+                if(STlinkedList != NULLNode) {
                     Key removeID;
                     printf("------------------------------------------\n");
-                    printf("INSIRA O ID A SER REMOVIDO: ");
+                    printf("INSIRA O ID A SER REMOVIDO:");
                     scanf("%d", &removeID);
                     printf("------------------------------------------\n");
                     printf("------------------------------------------\n");
-                    //STremove(removeID, &STlinkedList);
-                    //printf("TESTA ESSA PORCARIA\n");
-                    printf(STremove(removeID) ? "ITEM REMOVIDO\n" : "ITEM NÃO ENCONTRADO\n");
+                    STremove(removeID);
                     printf("------------------------------------------\n");
                 } else printfSTempty();
                 break;
             case 3:
-                if(STlinkedList) {
+                if(STlinkedList != NULLNode) {
                     Key searchID;
                     printf("------------------------------------------\n");
-                    printf("INSIRA O ID A SER PROCURADO: ");
+                    printf("INSIRA O ID A SER PROCURADO:");
                     scanf("%d", &searchID);
                     printf("------------------------------------------\n");
                     printf(STsearch(searchID) ? "ITEM ENCONTRADO\n" : "ITEM NÃO ENCONTRADO\n");
@@ -147,12 +158,10 @@ int main()
                 } else printfSTempty();
                 break;
             case 4:
-                if(STlinkedList) {
-                    printf("------------------------------------------\n");
-                    printf("[");
+                if(STlinkedList != NULLNode) {
+                    printf("------------------------------------------\n[");
                     printST(STlinkedList);
-                    printf("]\n");
-                    printf("------------------------------------------\n");
+                    printf("]\n------------------------------------------\n");
                 } else printfSTempty();
                 break;
             default:

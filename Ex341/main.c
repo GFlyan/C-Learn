@@ -6,6 +6,7 @@
 #define Data int
 #define key(item) item.key
 #define eq(valorA, valorB) (itemA == itemB)
+#define NULLItem (Item) {-1}
 
 /*Exercício 341: SYMBOL TABLE - ARRAY (acesso direto ao indice)
 
@@ -33,19 +34,13 @@ typedef struct {
     Data data; //Valores associados ao item
 }Item;
 
-static Item *STarray; //ST estática
-static int amountItens; //Diz respeito a quantidade de elementos na ST
+Item *STarray; //ST global
+int amountItens; //Diz respeito a quantidade de elementos na ST
 
-Item NULLitem() {
-    Item nullItem;
-    nullItem.key = NULL;
-    nullItem.data = NULL;
-    return nullItem;
-} //Retorna um item com os campos vazios
 
 void STinit() {
     STarray = malloc(sizeof(Item)*maxItens);
-    for(int i = 0 ; i < maxItens; i++) STarray[i] = NULLitem(); //Atribui itens vazios a todas as posições da ST "limpeza"
+    for(int i = 0 ; i < maxItens; i++) STarray[i] = NULLItem; //Atribui itens vazios a todas as posições da ST "limpeza"
     amountItens = 0;
 } //Inicia a ST -> Custo O(maxItens), devido a "limpeza"
 
@@ -58,6 +53,7 @@ int STcount() {
 } //Retorna quantos itens existem na ST
 
 void STinsert(Item item) {
+    if(key(STarray[key(item)]) != key(NULLItem)) return;
     STarray[key(item)] = item; //Insere um item em uma posição igual ao seu ID
     amountItens++;
 } //Insere itens na ST
@@ -68,7 +64,7 @@ bool STsearch(Key searchID) {
 
 bool STremove(Key removeID) {
     if(!STsearch(removeID)) return false; //Caso não exista um ID na ST
-    STarray[removeID] = NULLitem(); //Atribui um item vazio a ST na posição do ID caso o mesmo exista na ST
+    STarray[removeID] = NULLItem; //Atribui um item vazio a ST na posição do ID caso o mesmo exista na ST
     amountItens--;
     return true;
 } //Remove um ID na ST e retorna se o ID foi removido ou não
@@ -79,7 +75,7 @@ Item insertItem() {
     printf("INSIRA O ID: ");
     scanf("%d", &newItem.key);
     printf("------------------------------------------\n");
-    newItem.data = NULL;
+    newItem.data = 0;
     return newItem;
 } //Cria um novo item de acordo com as especificações do usuário e retorna
 
@@ -95,13 +91,19 @@ void printSTfull() {
     printf("------------------------------------------\n");
 } //Mensagem de ST cheia
 
+void printST() {
+    printf("[");
+    for(int pos = 0; pos < maxItens; pos++) if (key(STarray[pos]) != key(NULLItem)) printf(" %d ", key(STarray[pos]));
+    printf("]\n");
+} //Mostra todos os IDs dos itens da ST, exceto os IDs referentes ao NULLItem
+
 int main()
 {
     STinit();
     int option;
     do {
         printf("------------------------------------------\n");
-        printf("1 - INSERIR\n2 - PROCURAR\n3 - REMOVER\n0 - SAIR\n");
+        printf("1 - INSERIR\n2 - PROCURAR\n3 - REMOVER\n4 - MOSTRAR\n0 - SAIR\n");
         printf("------------------------------------------\n");
         printf("INSIRA: ");
         scanf("%d", &option);
@@ -134,6 +136,9 @@ int main()
                     printf(STremove(removeID) ? "ID FOI REMOVIDO\n" : "ID NÃO FOI ENCONTRADO\n");
                 } else printSTempty();
                 break;
+            case 4:
+              if(!STempty()) {printST();} else printSTempty();
+              break;
             default:
                 printf("------------------------------------------\n");
                 printf(option ? "OPÇÃO INVALIDA\n" : "PROGRAMA FINALIZADO\n");
