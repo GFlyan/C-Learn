@@ -46,7 +46,8 @@ TRATAMENTO DE COLISOES
 ENDEREÇAMENTO ABERTO/LINEAR-> A chave será guardada na próxima posição vazia
 do array, importante a utilização de um número máximo de colisões.
 
-DOUBLE HASHING->
+DOUBLE HASHING-> Calcula o hash novamente proporcionando "saltos" para a inserção na tabela
+a fim de não formar clusters na tabela devido as colisões.
 
 TABELA HASH COM ARRAY DE LISTA ENCADEADA -> As posições do array apontam
 para as chaves, sendo que cada chave, se houver colisão em dada posição, apontará
